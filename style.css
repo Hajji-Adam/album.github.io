@@ -45,7 +45,7 @@ body, html {
 #album {
     width: 100%;
     height: 600px;
-    position: relative; /* Ensure the album is positioned correctly */
+    position: relative; /* Parent container must be relative */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     overflow: hidden; /* Hide overflowing pages */
 }
@@ -62,7 +62,7 @@ body, html {
     text-align: center;
     font-size: 1.2rem;
     color: #333;
-    position: absolute; /* Ensure pages are positioned within the album */
+    position: absolute; /* Ensure pages are positioned absolutely */
     top: 0;
     left: 0;
     z-index: 1; /* Ensure pages are visible */
@@ -197,4 +197,27 @@ body, html {
     to {
         opacity: 1;
     }
+}
+/* Music Button Styling */
+.music-button-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.sound-button {
+    text-align: center;
+    background-color: #ff7eb3; /* Soft pink color */
+    color: white;
+    font-size: 1rem;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.sound-button:hover {
+    background-color: #ffb3b3; /* Lighter pink on hover */
+    transform: scale(1.05);  /* Lighter pink on hover */
 }

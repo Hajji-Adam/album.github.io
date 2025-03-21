@@ -1,68 +1,39 @@
 document.addEventListener('DOMContentLoaded', () => {
     const album = document.getElementById('album');
 
-    // Love quotes
-    const quotes = [
-        "Love is the bridge between two hearts.",
-        "Every love story is beautiful, but ours is my favorite.",
-        "You are my sun, my moon, and all of my stars.",
-        // ... (add more quotes as needed)
-        "Together, we shine brighter.",
-        "Your love is my happiness.",
-        "You are the love of my life."
-    ];
-
-    // Dynamically add images and quotes to the album
-    const totalImages = 33;
-  for (let i = 1; i <= totalImages; i++) {
-    const pageContent = `
-      <div class="page">
-        <img src="images/pic${i}.jpg" alt="Memory ${i}" onerror="this.src='images/placeholder.jpg'; this.alt='Placeholder'">
-      </div>
-    `;
-    $(album).turn('addPage', $(pageContent), i + 1); // Add pages after the cover
-  }
-
     // Add Cover Page
-   /* const coverPage = `
+    const coverPage = `
         <div class="page hard">
-            <div class="cover-content">
-                <h2>Adam & Lubna</h2>
-                <p>A Journey of Love</p>
-            </div>
+            <h2>Adam & Lubna</h2>
+            <p>A Journey of Love</p>
         </div>
     `;
-    album.innerHTML += coverPage;
+    $(album).append(coverPage);
+
+    // Dynamically add images and quotes to the album
+    const totalImages = 38;
+    for (let i = 1; i <= totalImages; i++) {
+        const pageContent = `
+            <div class="page">
+                <img src="images/pic${i}.jpg" alt="Photo ${i}">
+                <p class="quote">Quote for photo ${i}</p>
+            </div>
+        `;
+        $(album).append(pageContent);
+    }
 
     // Add Back Cover Page
     const backCoverPage = `
         <div class="page hard">
-            <div class="cover-content">
-                <h2>Made with ❤️</h2>
-            </div>
+            <h2>Made with ❤️</h2>
         </div>
     `;
-    album.innerHTML += backCoverPage;
-*/
-    // Get the viewport width and calculate responsive dimensions
-    const viewportWidth = window.innerWidth;
-    let albumWidth = 800; // Default width
-    let albumHeight = 600; // Default height
+    $(album).append(backCoverPage);
 
-    if (viewportWidth <= 768) {
-        albumWidth = 600; // Adjust width for tablets
-        albumHeight = 400; // Adjust height for tablets
-    }
-
-    if (viewportWidth <= 480) {
-        albumWidth = 400; // Adjust width for phones
-        albumHeight = 300; // Adjust height for phones
-    }
-
-    // Initialize the flipbook
+    // Initialize Turn.js after all pages are added
     $(album).turn({
-        width: albumWidth,
-        height: albumHeight,
+        width: 800,
+        height: 600,
         autoCenter: true,
         elevation: 50,
         gradients: true,
@@ -72,6 +43,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Play background music
-    const backgroundMusic = document.getElementById('background-music');
-    backgroundMusic.play();
+    function playSound() {
+        var audio = document.getElementById("sound");
+        audio.play().catch(function(error) {
+            console.error("Error attempting to play", error);
+        });
+    }
 });
